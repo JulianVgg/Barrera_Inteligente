@@ -14,6 +14,10 @@ from db.database import (
     list_recent_logs,
 )
 
+from hardware.barrier_servo import BarrierServo
+from hardware.distance_sensor import PresenceSensor
+from hardware.lcd_display import LCDDisplay
+
 
 def show_startup_info():
     print("===================================")
@@ -68,6 +72,28 @@ def show_recent_logs():
         )
 
 
+def test_simulated_hardware():
+    print("\n========== PRUEBA DE HARDWARE ==========")
+
+    barrier = BarrierServo()
+    sensor = PresenceSensor()
+    lcd = LCDDisplay()
+
+    lcd.show_message("Barrera lista", "Modo simulado")
+
+    present, distance = sensor.is_present()
+
+    print(f"Presencia detectada: {present}")
+    print(f"Distancia: {distance} cm")
+
+    if present:
+        lcd.show_message("Vehiculo cerca", f"{distance} cm")
+        barrier.open()
+        lcd.show_message("Acceso", "Autorizado")
+    else:
+        lcd.show_message("Sin vehiculo", "Esperando...")
+
+
 def main():
     show_startup_info()
 
@@ -77,6 +103,8 @@ def main():
 
     show_authorized_plates()
     show_recent_logs()
+
+    test_simulated_hardware()
 
     print("\nProyecto iniciado correctamente.")
 
