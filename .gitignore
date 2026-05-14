@@ -1,0 +1,38 @@
+# Entorno virtual
+venv/
+.venv/
+
+# Cache de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Variables de entorno
+.env
+
+# Base de datos local generada
+db/barrera.db
+
+# Reportes generados
+reports/generated/
+
+# Capturas generadas por el sistema
+captures/authorized/
+captures/denied/
+captures/unknown/
+
+# Modelos entrenados pesados
+# Si el modelo pesa mucho, mejor no subirlo o usar Git LFS
+*.h5
+*.keras
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Configuración local de VS Code
+.vscode/
+
+# Logs
+*.log
